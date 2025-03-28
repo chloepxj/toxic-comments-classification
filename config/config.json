@@ -1,0 +1,37 @@
+{
+    "name": "vanilla_BERT",
+    "n_gpu": 1,
+    "batch_size": 10,
+    "accumulate_grad_batches": 3,
+    "loss": "binary_cross_entropy",
+    "arch": {
+        "type": "BERT",
+        "args": {
+            "num_classes": 2,
+            "model_type": "bert-base-uncased",
+            "model_name": "BertForSequenceClassification",
+            "tokenizer_name": "BertTokenizer"
+        }
+    },
+    "dataset": {
+        "type": "snlp_competition_original",
+        "args": {
+            "train_csv_file": "data/train.tsv",
+            "val_csv_file": "data/dev.tsv",
+            "test_csv_file": "data/test.csv",
+            "add_test_labels": false,
+            "classes": [
+                "toxic",
+                "untoxic"
+            ]
+        }
+    },
+    "optimizer": {
+        "type": "Adam",
+        "args": {
+            "lr": 2e-5,
+            "weight_decay": 3e-6,
+            "amsgrad": true
+        }
+    }
+}
